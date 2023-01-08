@@ -27,8 +27,11 @@ class BooksAction extends StatelessWidget {
           )),
           Expanded(
               child: CustomButton(
-            onPressed: () {
-              launchCustomUr(context, '${bookModel.volumeInfo.previewLink}');
+            onPressed: () async {
+              String url = bookModel.volumeInfo.previewLink!;
+              final _url = Uri.parse(url);
+
+              await launchUrl(_url, mode: LaunchMode.externalApplication);
             },
             fontSize: 16,
             text: getText(bookModel),
